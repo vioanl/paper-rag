@@ -10,20 +10,20 @@ Rules:
 - If the sources don't contain the answer, reply only: "The papers don't cover this."
 - Be concise."""
 
-def call_llm(system, prompt):
+def call_llm(system, prompt, model=LLM_MODEL):
     """Send one prompt to the configured LLM and return its text reply."""
     if LLM_PROVIDER == "gemini":
         from google import genai
         from google.genai import types
         client = genai.Client()  # keep a reference, or it closes mid-request
         resp = client.models.generate_content(
-            model=LLM_MODEL, contents=prompt,
+            model=model, contents=prompt,
             config=types.GenerateContentConfig(system_instruction=system,
                                                max_output_tokens=MAX_TOKENS))
         return resp.text
     import anthropic
     msg = anthropic.Anthropic().messages.create(
-        model=LLM_MODEL, max_tokens=MAX_TOKENS, system=system,
+        model=model, max_tokens=MAX_TOKENS, system=system,
         messages=[{"role": "user", "content": prompt}])
     return msg.content[0].text
 

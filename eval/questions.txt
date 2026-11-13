@@ -1,0 +1,68 @@
+# Ground-truth questions for the evaluation.
+# Q = question, P = paper(s) that contain the answer (file names without .pdf, comma-separated),
+# A = correct answer in 1-2 sentences. Leave P empty if no paper answers it.
+# Keep each field on ONE line. Leave one empty line between questions.
+
+Q: How does correlation alignment transfer structural knowledge from teacher to student?
+P: ivc2026_cakd_wildfire_retrieval, cakd_image_retrieval_conf
+A: CAKD computes spatial correlation maps from teacher and student feature maps and aligns them with a contrastive correlation loss; the student is pushed to increase a correlation only where the teacher's correlation exceeds a threshold (the teacher's mean correlation for anchor-positive or anchor-negative pairs), so weak, noisy correlations are not transferred.
+
+Q: How can the knowledge in a deep neural network be quantified?
+P: knowledge_quantification_survey
+A: Besides simply measuring accuracy on a test set, the survey describes two families of metrics: information-theoretic metrics, which measure the information a DNN layer encodes, and knowledge-points metrics, which count the input patterns whose information is retained in intermediate layers.
+
+Q: Which optimizer and learning rate were used to train GPT-4?
+P:
+A: The papers don't cover this.
+
+Q: Which measure from statistical learning theory was used in early work to analyze neural network capacity?
+P: knowledge_quantification_survey
+A: The Vapnik-Chervonenkis (VC) dimension, a model complexity measure linked to generalization; the survey notes that such classical bounds are often too loose for non-linear DNNs.
+
+Q: Into which categories are deep image retrieval methods organized in the image retrieval survey?
+P: image_retrieval_survey
+A: Six categories: representation learning, metric learning, feature aggregation, attention mechanisms, hashing techniques (deep hash embeddings), and DNN fine-tuning.
+
+Q: What is the difference between category-level and instance-level image retrieval?
+P: image_retrieval_survey
+A: Category-level retrieval finds images of the same class as the query, while instance-level retrieval finds images showing the same specific object or scene, even under different imaging conditions.
+
+Q: With a CLIP ViT-B/32 teacher and a ConvNeXt-Tiny student, what triplet accuracy and mAP did the CAKD student reach on Blaze+?
+P: ivc2026_cakd_wildfire_retrieval
+A: 94.32% triplet accuracy and 0.8247 mAP, higher than the CLIP teacher's 94.01% and 0.8125.
+
+Q: With a ResNet50 teacher and a ResNet18 student, what Blaze+ mAP did the CAKD student reach, and how did it compare to the teacher?
+P: cakd_image_retrieval_conf
+A: 0.7915 mAP, which is higher than the ResNet50 teacher's 0.7720.
+
+Q: What two modules make up the proposed DNN agent architecture for knowledge self-assessment?
+P: dnn_knowledge_assessment_multi_agent
+A: The Agent Knowledge Self-Assessment Module (AKSAM), a VAE-based OOD detector using Likelihood Regret that decides whether incoming data belongs to the agent's training domain, and the Decision Module (DM), a classification DNN that performs single- or multi-agent inference or learns from a Teacher through distillation.
+
+Q: In multi-teacher distillation on CIFAR-100, how did the student's accuracy change compared with a single teacher?
+P: dnn_knowledge_assessment_multi_agent
+A: It rose from 64.68% with one teacher to 67.96% with two teachers, while for MNIST and Fashion-MNIST the gain from a second teacher was minimal.
+
+Q: How is the minimum number of test samples for a reliable OOD detector determined, and how much data turned out to be enough?
+P: domain_expertise_multi_dnn_agents, dnn_knowledge_assessment_multi_agent
+A: The detector is tested with 1 to 2000 samples, repeated ten times, and the minimum is the sample count whose AUCROC reaches the overall mean plus 1.96 sigma divided by sqrt(N) (a 95% confidence interval); about 1% of the training data is enough, e.g. 586 samples (0.98%) for Fashion-MNIST.
+
+Q: With a ResNet101 teacher and a ResNet50 student, what triplet accuracy did the TBKD student reach on Flowers102, compared with the teacher?
+P: structural_kd_multi_dnn_agents
+A: 71.43% for the TBKD student versus 69.83% for the ResNet101 teacher; triplet loss alone gave 68.26% and KD loss alone 65.50%.
+
+Q: How many test samples does AlexNet need for reliable inference on each dataset?
+P: efficient_data_utilization
+A: 335 for Fashion-MNIST (0.55%), 305 for CIFAR-10 (0.61%), 362 for CIFAR-100 (0.72%) and 253 for MNIST (0.42%), all under 1% of the training data.
+
+Q: What mean AlexNet classification accuracy was measured on CIFAR-100 with 2000 test samples?
+P: efficient_data_utilization
+A: 0.6167, with a standard deviation of 0.0117.
+
+Q: How does the definition of an agent's knowledge differ between the OOD domain-expertise paper and the multi-agent self-assessment paper?
+P: domain_expertise_multi_dnn_agents, dnn_knowledge_assessment_multi_agent
+A: The domain-expertise paper defines knowledge as the amount of in-distribution data the agent's OOD detector finds in the incoming data, while the self-assessment paper defines it as the model's post-training ability to perform a task at a given performance level, such as classification accuracy.
+
+Q: Which GPU was used to train the CAKD student networks, and how long did training take?
+P:
+A: The papers don't cover this.
