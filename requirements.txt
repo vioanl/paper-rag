@@ -1,0 +1,6 @@
+pymupdf
+sentence-transformers
+chromadb
+anthropic
+python-dotenv
+google-genai
